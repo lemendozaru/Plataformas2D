@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://dsa8x0vmdkbu4"]
+
+[node name="Main" type="Node" unique_id=991517635]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1023792912]
