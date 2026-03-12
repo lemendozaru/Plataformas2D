@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://i81jwlvykman"]
 
 [ext_resource type="Texture2D" uid="uid://u5y3y6gwsxj8" path="res://assets/Sprites/Characters/character_0000.png" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://bs4myra4qkd40" path="res://scripts/player.gd" id="1_g2els"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
 height = 24.0
 
 [node name="Player" type="CharacterBody2D" unique_id=459434375]
+script = ExtResource("1_g2els")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1657143586]
 texture = ExtResource("1_3vyb7")
