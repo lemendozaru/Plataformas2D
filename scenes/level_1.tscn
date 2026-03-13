@@ -3,6 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://coy771woejar2" path="res://assets/Sprites/Backgrounds/backgroundForest.png" id="1_bswci"]
 [ext_resource type="TileSet" uid="uid://wea316uhijsb" path="res://assets/Sprites/Tiles/new_tile_set.tres" id="2_rus8k"]
 [ext_resource type="PackedScene" uid="uid://i81jwlvykman" path="res://scenes/player.tscn" id="3_rus8k"]
+[ext_resource type="Script" uid="uid://dvhhawbtk518i" path="res://scripts/enemy.gd" id="4_4nkto"]
+[ext_resource type="Texture2D" uid="uid://btetwm5om7nq1" path="res://assets/Sprites/Characters/character_0024.png" id="4_5xbjy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5xbjy"]
+radius = 7.0
 
 [node name="Main" type="Node" unique_id=991517635]
 
@@ -15,3 +20,18 @@ tile_map_data = PackedByteArray("AAD+/wAAAAABAAEAAAABAAAAAAADAAEAAAD//wAAAAACAAE
 tile_set = ExtResource("2_rus8k")
 
 [node name="Player" parent="." unique_id=459434375 instance=ExtResource("3_rus8k")]
+
+[node name="Enemy" type="Area2D" parent="." unique_id=903904749]
+position = Vector2(56, 20)
+script = ExtResource("4_4nkto")
+move_direction = Vector2(0, -50)
+
+[node name="EnemySprite" type="Sprite2D" parent="Enemy" unique_id=648264643]
+texture = ExtResource("4_5xbjy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=747819334]
+shape = SubResource("CircleShape2D_5xbjy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy" unique_id=864388979]
+
+[connection signal="body_entered" from="Enemy" to="Enemy" method="_on_body_entered"]
