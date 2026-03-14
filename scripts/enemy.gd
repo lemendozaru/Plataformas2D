@@ -10,6 +10,10 @@ extends Area2D
 # posición final
 @onready var target_pos : Vector2 = global_position + move_direction
 
+func _ready():
+	# reproduce "fly" justo al aparecer en escena
+	$AnimationPlayer.play("fly")
+
 func _physics_process(delta):
 	# Se mueve hacia delante, a la posición objetivo a la velocidad indicada
 	global_position = global_position.move_toward(target_pos, move_speed * delta)
@@ -24,6 +28,11 @@ func _physics_process(delta):
 			# la posición objetivo y la inicial son la misma
 			target_pos = start_pos
 
-
-func _on_body_entered(body: Node2D) -> void:
-	pass # Replace with function body.
+# algo entró al Area2D
+func _on_body_entered(body: Node2D):
+	# Si el cuerpo que entró no está en "Players":
+	if not body.is_in_group("Players"):
+		# regresa y hace nada
+		return
+	# pero si sí, recibe daño el cuerpo que haya entrado
+	body.take_damage(1)

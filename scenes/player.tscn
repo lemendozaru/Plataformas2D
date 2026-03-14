@@ -79,7 +79,7 @@ _data = {
 &"move": SubResource("Animation_dqkch")
 }
 
-[node name="Player" type="CharacterBody2D" unique_id=459434375]
+[node name="Player" type="CharacterBody2D" unique_id=459434375 groups=["Players"]]
 script = ExtResource("1_g2els")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." unique_id=1657143586]

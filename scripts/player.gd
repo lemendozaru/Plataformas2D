@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+# puntos de vida
+@export var health : int = 3
+
 @onready var sprite : Sprite2D = $PlayerSprite
 
 # velocidad máxima a la que nos moveremos
@@ -59,3 +62,19 @@ func _manage_animations():
 	# y si nada de eso ocurre:
 	else:
 		$AnimationPlayer.play("idle")
+		
+func take_damage(amount : int):
+	# perdemos una cantidad de vida
+	health -= amount
+	# si la vida llega a cero:
+	if health <= 0:
+		# perdemos (pero diferimos la llamada a función)
+		call_deferred("game_over")
+		
+func game_over():
+	# volvemos al principio del nivel 1
+	get_tree().change_scene_to_file("res://scenes/level_1.tscn")
+	
+func increase_score(amount : int):
+	PlayerStats.score += amount
+	print(PlayerStats.score)

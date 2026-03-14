@@ -3,11 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://coy771woejar2" path="res://assets/Sprites/Backgrounds/backgroundForest.png" id="1_bswci"]
 [ext_resource type="TileSet" uid="uid://wea316uhijsb" path="res://assets/Sprites/Tiles/new_tile_set.tres" id="2_rus8k"]
 [ext_resource type="PackedScene" uid="uid://i81jwlvykman" path="res://scenes/player.tscn" id="3_rus8k"]
-[ext_resource type="Script" uid="uid://dvhhawbtk518i" path="res://scripts/enemy.gd" id="4_4nkto"]
-[ext_resource type="Texture2D" uid="uid://btetwm5om7nq1" path="res://assets/Sprites/Characters/character_0024.png" id="4_5xbjy"]
+[ext_resource type="PackedScene" uid="uid://4l3vq51rbkq5" path="res://scenes/enemy.tscn" id="4_5xbjy"]
+[ext_resource type="PackedScene" uid="uid://cgg5ejwbwdspg" path="res://scenes/coin.tscn" id="5_4nkto"]
+[ext_resource type="Texture2D" uid="uid://c5bh4wrwpb7dv" path="res://assets/Sprites/Objects/tile_0112.png" id="6_fcfvj"]
+[ext_resource type="Script" uid="uid://baikpd6mtvxed" path="res://scripts/end_flag.gd" id="6_pa8r4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_5xbjy"]
-radius = 7.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_pa8r4"]
+radius = 8.0
 
 [node name="Main" type="Node" unique_id=991517635]
 
@@ -21,17 +23,73 @@ tile_set = ExtResource("2_rus8k")
 
 [node name="Player" parent="." unique_id=459434375 instance=ExtResource("3_rus8k")]
 
-[node name="Enemy" type="Area2D" parent="." unique_id=903904749]
+[node name="Enemies" type="Node" parent="." unique_id=684679977]
+
+[node name="Enemy" parent="Enemies" unique_id=1710971682 instance=ExtResource("4_5xbjy")]
 position = Vector2(56, 20)
-script = ExtResource("4_4nkto")
-move_direction = Vector2(0, -50)
 
-[node name="EnemySprite" type="Sprite2D" parent="Enemy" unique_id=648264643]
-texture = ExtResource("4_5xbjy")
+[node name="Enemy2" parent="Enemies" unique_id=1106484567 instance=ExtResource("4_5xbjy")]
+position = Vector2(163, 7)
+move_speed = 35.0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy" unique_id=747819334]
-shape = SubResource("CircleShape2D_5xbjy")
+[node name="Enemy3" parent="Enemies" unique_id=320615737 instance=ExtResource("4_5xbjy")]
+position = Vector2(280, 14)
+move_direction = Vector2(0, -70)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemy" unique_id=864388979]
+[node name="Enemy4" parent="Enemies" unique_id=1167065199 instance=ExtResource("4_5xbjy")]
+position = Vector2(357, -20)
+move_direction = Vector2(0, -35)
+move_speed = 10.0
 
-[connection signal="body_entered" from="Enemy" to="Enemy" method="_on_body_entered"]
+[node name="Enemy5" parent="Enemies" unique_id=2061582208 instance=ExtResource("4_5xbjy")]
+position = Vector2(475, -70)
+move_direction = Vector2(-30, 0)
+move_speed = 5.0
+
+[node name="Enemy6" parent="Enemies" unique_id=551053819 instance=ExtResource("4_5xbjy")]
+position = Vector2(531, -70)
+move_direction = Vector2(40, 0)
+move_speed = 10.0
+
+[node name="Coins" type="Node" parent="." unique_id=1275841394]
+
+[node name="Coin" parent="Coins" unique_id=362154921 instance=ExtResource("5_4nkto")]
+position = Vector2(23, -9)
+
+[node name="Coin2" parent="Coins" unique_id=735491949 instance=ExtResource("5_4nkto")]
+position = Vector2(113, 3)
+
+[node name="Coin3" parent="Coins" unique_id=2092004358 instance=ExtResource("5_4nkto")]
+position = Vector2(189, -28)
+
+[node name="Coin4" parent="Coins" unique_id=1800350470 instance=ExtResource("5_4nkto")]
+position = Vector2(243, -35)
+
+[node name="Coin5" parent="Coins" unique_id=1001497104 instance=ExtResource("5_4nkto")]
+position = Vector2(386, -48)
+
+[node name="Coin6" parent="Coins" unique_id=95756702 instance=ExtResource("5_4nkto")]
+position = Vector2(427, -65)
+
+[node name="Coin7" parent="Coins" unique_id=979330030 instance=ExtResource("5_4nkto")]
+position = Vector2(600, -68)
+
+[node name="EndFlag" type="Area2D" parent="." unique_id=756666533]
+position = Vector2(762, -80)
+script = ExtResource("6_pa8r4")
+scene_to_load = ExtResource("3_rus8k")
+
+[node name="FlagSprite" type="Sprite2D" parent="EndFlag" unique_id=623674696]
+texture = ExtResource("6_fcfvj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndFlag" unique_id=557084763]
+shape = SubResource("CircleShape2D_pa8r4")
+
+[connection signal="body_entered" from="Coins/Coin" to="Coins/Coin" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/Coin2" to="Coins/Coin2" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/Coin3" to="Coins/Coin3" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/Coin4" to="Coins/Coin4" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/Coin5" to="Coins/Coin5" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/Coin6" to="Coins/Coin6" method="_on_body_entered"]
+[connection signal="body_entered" from="Coins/Coin7" to="Coins/Coin7" method="_on_body_entered"]
+[connection signal="body_entered" from="EndFlag" to="EndFlag" method="_on_body_entered"]

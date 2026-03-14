@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://4l3vq51rbkq5"]
+
+[ext_resource type="Script" uid="uid://dvhhawbtk518i" path="res://scripts/enemy.gd" id="1_5uy6h"]
+[ext_resource type="Texture2D" uid="uid://btetwm5om7nq1" path="res://assets/Sprites/Characters/character_0024.png" id="2_c4w8v"]
+[ext_resource type="Texture2D" uid="uid://cqvhxrevekb8p" path="res://assets/Sprites/Characters/character_0025.png" id="3_xwavj"]
+[ext_resource type="Texture2D" uid="uid://bedia84ex6mn7" path="res://assets/Sprites/Characters/character_0026.png" id="4_nenq2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5xbjy"]
+radius = 7.0
+
+[sub_resource type="Animation" id="Animation_e3sih"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_c4w8v")]
+}
+
+[sub_resource type="Animation" id="Animation_2y5yt"]
+resource_name = "fly"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EnemySprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.18, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [ExtResource("2_c4w8v"), ExtResource("3_xwavj"), ExtResource("4_nenq2")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2os1m"]
+_data = {
+&"RESET": SubResource("Animation_e3sih"),
+&"fly": SubResource("Animation_2y5yt")
+}
+
+[node name="Enemy" type="Area2D" unique_id=1710971682]
+script = ExtResource("1_5uy6h")
+move_direction = Vector2(0, -50)
+
+[node name="EnemySprite" type="Sprite2D" parent="." unique_id=1246686819]
+texture = ExtResource("2_c4w8v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1681182543]
+shape = SubResource("CircleShape2D_5xbjy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1064885838]
+libraries/ = SubResource("AnimationLibrary_2os1m")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
