@@ -24,6 +24,14 @@ signal OnUpdateScore (score : int)
 # variable donde almacenaremos las entradas para el movimiento
 var move_input : float
 
+# Referencia al AudioStreamPlayer
+@onready var audio : AudioStreamPlayer = $AudioStreamPlayer
+
+# precarga del audio de daño
+var take_damage_sfx : AudioStream = preload("res://assets/Audio/take_damage.wav")
+# precarga del audio de las monedas
+var coin_sfx : AudioStream = preload("res://assets/Audio/coin.wav")
+
 func _physics_process(delta: float):
 	# Gravedad
 	if not is_on_floor():
@@ -77,6 +85,8 @@ func take_damage(amount : int):
 	# emitimos la señal de daño
 	OnUpdateHealth.emit(health)
 	_damage_flash()
+	# reproducimos el sonido de daño
+	play_sound(take_damage_sfx)
 	# si la vida llega a cero:
 	if health <= 0:
 		# perdemos (pero diferimos la llamada a función)
@@ -90,6 +100,8 @@ func increase_score(amount : int):
 	PlayerStats.score += amount
 	# emitimos señal de incremento de puntaje
 	OnUpdateScore.emit(PlayerStats.score)
+	# reproducimos el sonido de moneda
+	play_sound(coin_sfx)
 	
 func _damage_flash():
 	# coloreamos de rojo
@@ -98,3 +110,9 @@ func _damage_flash():
 	await get_tree().create_timer(0.05).timeout
 	# devolvemos el color base
 	sprite.modulate = Color.WHITE
+	
+func play_sound(sound : AudioStream):
+	# "audio" transmitirá lo que tengamos en "sound"
+	audio.stream = sound
+	# y lo reproducirá
+	audio.play()

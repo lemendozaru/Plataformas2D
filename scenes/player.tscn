@@ -137,3 +137,5 @@ offset_right = 230.0
 offset_bottom = 126.0
 text = "Puntaje: 500"
 label_settings = SubResource("LabelSettings_dqkch")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=635353099]
