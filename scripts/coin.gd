@@ -16,7 +16,7 @@ var bob_speed : float = 5.0
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	# obtener tiempo del SO
 	var time = Time.get_unix_time_from_system()
 	# rota
@@ -27,7 +27,7 @@ func _physics_process(delta):
 	global_position.y = start_pos.y - y_pos
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 

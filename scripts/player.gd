@@ -56,7 +56,7 @@ func _physics_process(delta: float):
 		
 	move_and_slide()
 	
-func _process(delta: float):
+func _process(_delta: float):
 	# Si el caracter se está moviendo:
 	if velocity.x != 0:
 		# entonces si la velocidad en x es positiva, se gira el sprite

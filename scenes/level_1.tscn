@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://fq5uohv7wcpx"]
 
-[ext_resource type="Script" uid="uid://d2vpqub0cm2ks" path="res://backgrounds.gd" id="1_ne2mo"]
+[ext_resource type="Script" uid="uid://d2vpqub0cm2ks" path="res://scripts/backgrounds.gd" id="1_ne2mo"]
 [ext_resource type="Texture2D" uid="uid://coy771woejar2" path="res://assets/Sprites/Backgrounds/backgroundForest.png" id="2_6cvei"]
 [ext_resource type="TileSet" uid="uid://wea316uhijsb" path="res://assets/Sprites/Tiles/new_tile_set.tres" id="3_que50"]
 [ext_resource type="PackedScene" uid="uid://i81jwlvykman" path="res://scenes/player.tscn" id="4_hey2k"]

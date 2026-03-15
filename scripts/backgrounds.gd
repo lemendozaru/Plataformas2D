@@ -6,7 +6,7 @@ var parallax : float = 0.7
 @onready var player = $"../Player"
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float):
+func _process(_delta: float):
 	# Obtenemos la posición global del nodo tras multiplicar la del jugador
 	# por parallax
 	global_position = player.global_position * parallax

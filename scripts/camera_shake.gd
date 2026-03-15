@@ -8,7 +8,7 @@ func _ready() -> void:
 	# nos conectamos con la señal de daño
 	get_parent().OnUpdateHealth.connect(_damage_shake)
 
-func _damage_shake(health : int):
+func _damage_shake(_health : int):
 	intensity = 3
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
