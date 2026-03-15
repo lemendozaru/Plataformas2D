@@ -1,5 +1,10 @@
 extends CharacterBody2D
 
+# Actualizar la vida - señal de daño
+signal OnUpdateHealth (health : int)
+# Actualizar el puntaje - señal de moneda
+signal OnUpdateScore (score : int)
+
 # puntos de vida
 @export var health : int = 3
 
@@ -50,6 +55,9 @@ func _process(delta: float):
 		sprite.flip_h = velocity.x > 0
 		
 	_manage_animations()
+	
+	if global_position.y > 200:
+		game_over()
 		
 func _manage_animations():
 	# si el caracter está en el aire:
@@ -66,6 +74,9 @@ func _manage_animations():
 func take_damage(amount : int):
 	# perdemos una cantidad de vida
 	health -= amount
+	# emitimos la señal de daño
+	OnUpdateHealth.emit(health)
+	_damage_flash()
 	# si la vida llega a cero:
 	if health <= 0:
 		# perdemos (pero diferimos la llamada a función)
@@ -77,4 +88,13 @@ func game_over():
 	
 func increase_score(amount : int):
 	PlayerStats.score += amount
-	print(PlayerStats.score)
+	# emitimos señal de incremento de puntaje
+	OnUpdateScore.emit(PlayerStats.score)
+	
+func _damage_flash():
+	# coloreamos de rojo
+	sprite.modulate = Color.RED
+	# creamos un timer que dure 0.5s
+	await get_tree().create_timer(0.05).timeout
+	# devolvemos el color base
+	sprite.modulate = Color.WHITE

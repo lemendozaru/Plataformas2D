@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://u5y3y6gwsxj8" path="res://assets/Sprites/Characters/character_0000.png" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://bs4myra4qkd40" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://dfjtnmbc4y40k" path="res://assets/Sprites/Characters/character_0001.png" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://ckp4ei3d0ipc6" path="res://scripts/camera_shake.gd" id="3_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://du041bpe48ext" path="res://assets/Sprites/Objects/tile_0044.png" id="4_dqkch"]
+[ext_resource type="Script" uid="uid://04kdsaohxgx" path="res://scripts/canvas_layer.gd" id="4_qlg0r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_3vyb7"]
 height = 24.0
@@ -79,6 +82,11 @@ _data = {
 &"move": SubResource("Animation_dqkch")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_dqkch"]
+font_size = 38
+shadow_size = 6
+shadow_color = Color(0, 0, 0, 0.5294118)
+
 [node name="Player" type="CharacterBody2D" unique_id=459434375 groups=["Players"]]
 script = ExtResource("1_g2els")
 
@@ -94,7 +102,38 @@ shape = SubResource("CapsuleShape2D_3vyb7")
 [node name="Camera2D" type="Camera2D" parent="." unique_id=53045593]
 position = Vector2(0, -24)
 zoom = Vector2(3, 3)
+script = ExtResource("3_tuyoq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=296445432]
 libraries/ = SubResource("AnimationLibrary_dqkch")
 autoplay = &"idle"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1076102809]
+script = ExtResource("4_qlg0r")
+
+[node name="HealthContainer" type="HBoxContainer" parent="CanvasLayer" unique_id=42796182]
+offset_right = 248.0
+offset_bottom = 80.0
+
+[node name="Heart" type="TextureRect" parent="CanvasLayer/HealthContainer" unique_id=1474772420]
+layout_mode = 2
+texture = ExtResource("4_dqkch")
+expand_mode = 2
+
+[node name="Heart2" type="TextureRect" parent="CanvasLayer/HealthContainer" unique_id=641375121]
+layout_mode = 2
+texture = ExtResource("4_dqkch")
+expand_mode = 2
+
+[node name="Heart3" type="TextureRect" parent="CanvasLayer/HealthContainer" unique_id=671032076]
+layout_mode = 2
+texture = ExtResource("4_dqkch")
+expand_mode = 2
+
+[node name="ScoreText" type="Label" parent="CanvasLayer" unique_id=190223992]
+offset_left = 3.0
+offset_top = 73.0
+offset_right = 230.0
+offset_bottom = 126.0
+text = "Puntaje: 500"
+label_settings = SubResource("LabelSettings_dqkch")
