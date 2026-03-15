@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cgg5ejwbwdspg" path="res://scenes/coin.tscn" id="5_4nkto"]
 [ext_resource type="Texture2D" uid="uid://c5bh4wrwpb7dv" path="res://assets/Sprites/Objects/tile_0112.png" id="6_fcfvj"]
 [ext_resource type="Script" uid="uid://baikpd6mtvxed" path="res://scripts/end_flag.gd" id="6_pa8r4"]
+[ext_resource type="PackedScene" uid="uid://c0pdkab5fs2dr" path="res://scenes/menu.tscn" id="8_6cvei"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pa8r4"]
 radius = 8.0
@@ -100,7 +101,7 @@ position = Vector2(640, -34)
 [node name="EndFlag" type="Area2D" parent="." unique_id=756666533]
 position = Vector2(762, -80)
 script = ExtResource("6_pa8r4")
-scene_to_load = ExtResource("3_rus8k")
+scene_to_load = ExtResource("8_6cvei")
 
 [node name="FlagSprite" type="Sprite2D" parent="EndFlag" unique_id=623674696]
 texture = ExtResource("6_fcfvj")
