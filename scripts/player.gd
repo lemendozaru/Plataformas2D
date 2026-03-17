@@ -70,7 +70,7 @@ func _process(_delta: float):
 func _manage_animations():
 	# si el caracter está en el aire:
 	if not is_on_floor():
-		# reproduce "idle"
+		# reproduce "jump"
 		$AnimationPlayer.play("jump")
 	# pero si se está moviendo:
 	elif move_input != 0:
