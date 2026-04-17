@@ -36,3 +36,7 @@ func _on_body_entered(body: Node2D):
 		return
 	# pero si sí, recibe daño el cuerpo que haya entrado
 	body.take_damage(1)
+
+
+func _on_coin_3_body_entered(body: Node2D) -> void:
+	pass # Replace with function body.
