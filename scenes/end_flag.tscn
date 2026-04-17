@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://chq4yj4i06p1x"]
+
+[ext_resource type="Script" uid="uid://c0tlp7vnb000e" path="res://scripts/end_flag.gd" id="1_jk1va"]
+[ext_resource type="PackedScene" uid="uid://bjsf3q6hvbyji" path="res://scenes/player.tscn" id="2_l8w0g"]
+[ext_resource type="Texture2D" uid="uid://cs4n55irh63or" path="res://assets/Sprites/Objects/tile_0112.png" id="3_1ee8w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imr5f"]
+size = Vector2(19.25, 19.5)
+
+[node name="EndFlag" type="Area2D" unique_id=208793593]
+script = ExtResource("1_jk1va")
+scene_to_load = ExtResource("2_l8w0g")
+
+[node name="FlagSprite" type="Sprite2D" parent="." unique_id=2034158691]
+position = Vector2(2310, -44)
+texture = ExtResource("3_1ee8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2134773219]
+position = Vector2(2309, -45)
+shape = SubResource("RectangleShape2D_imr5f")
